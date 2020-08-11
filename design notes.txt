@@ -1,0 +1,32 @@
+GameManager
+    - Has countdown timer until game over
+
+EnemyManager
+    - Spawn enemies along edge of screen
+    - Spawn rate increases as countdown approaches 0
+    - Enemies use object pool
+
+EnemyMovement
+    - Linear turn nose towards player 
+    - Travel in self forward direction
+EnemyStatus
+    - Despawn enemy when hitpoints <= 0
+    - Probably only 1 hitpoint for this demo
+
+PlayerInput
+    - Detect press inputs from left and right side of screen
+    - Left input => fire left gun
+    - Right input => fire right gun
+    - Recoil from guns causes movement 
+    - Gun bullets use object pool
+PlayerStatus
+    - Game over when colliding with an enemy
+
+Bullet
+    - Spawned/fired from PlayerInput
+    - Orient to direction given by PlayerInput when fired
+    - Travel in self forward direction
+    - Despawn on collision with enemy; transmit damage
+
+TreasureManager
+Treasure 
