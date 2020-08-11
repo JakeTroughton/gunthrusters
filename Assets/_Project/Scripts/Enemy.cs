@@ -24,13 +24,18 @@ public class Enemy : MonoBehaviour, IPoolable
     private void Update()
     {
         // Rotate
+        RotateToTarget(angularSpeed);
+
+        // Move
+        transform.localPosition += transform.up * linearSpeed * Time.deltaTime;
+    }
+
+    public void RotateToTarget(float maxDegreesDelta)
+    {
         Vector2 targetPosition = Target.position;
         Vector3 myPosition = transform.position;
         float targetAngleDeg = Mathf.Atan2(targetPosition.y - myPosition.y, targetPosition.x - myPosition.x) * Mathf.Rad2Deg - 90f;
-        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0f, 0f, targetAngleDeg), angularSpeed * Time.deltaTime);
-        
-        // Move
-        transform.localPosition += transform.up * linearSpeed * Time.deltaTime;
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0f, 0f, targetAngleDeg), maxDegreesDelta * Time.deltaTime);
     }
 
     public void Deactivate()

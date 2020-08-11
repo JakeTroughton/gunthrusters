@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
         enemyPool = new ObjectPool<Enemy>();
         enemyPool.Populate(enemyPrefab, 10, false);
 
-        spawnCooldown = spawnRateMax;
+        spawnCooldown = spawnRateMin;
     }
 
     private void Start()
@@ -56,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemyPool.TryActivate(position, out Enemy enemy))
         {
             enemy.Target = chaseTarget;
+            enemy.RotateToTarget(Mathf.Infinity);
         }
     }
 }
