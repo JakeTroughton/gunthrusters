@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour, IPoolable
 {
     public GameObject GameObject => gameObject;
 
-    private Vector2 direction;
+    public Vector2 Direction { get; set; }
     [SerializeField]
     private float speed = 10f;
 
@@ -23,15 +23,10 @@ public class Bullet : MonoBehaviour, IPoolable
         transform.localPosition = position;
     }
 
-    public void SetDirection(Vector2 direction)
-    {
-        this.direction = direction;
-    }
-
     private void Update()
     {
         Vector2 pos = transform.localPosition;
-        pos += direction * speed * Time.deltaTime;
+        pos += Direction * speed * Time.deltaTime;
         transform.localPosition = pos;
 
         if(offscreenCheckCooldown > 0f)

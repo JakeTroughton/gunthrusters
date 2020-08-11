@@ -38,6 +38,7 @@ public class PlayerGun : MonoBehaviour
             if((side & playerInput.CurrentInput) != 0)
             {
                 Fire();
+                fireCooldown = fireRate;
             }
         }
         else
@@ -50,9 +51,8 @@ public class PlayerGun : MonoBehaviour
     {
         if (bulletPool.TryActivate(transform.position, out Bullet bullet))
         {
-            bullet.SetDirection(transform.up);
+            bullet.Direction = transform.up;
             OnFire?.Invoke(linearRecoil, angularRecoil);
         }
-        fireCooldown = fireRate;
     }
 }
