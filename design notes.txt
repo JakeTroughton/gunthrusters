@@ -15,11 +15,13 @@ EnemyStatus
 
 PlayerInput
     - Detect press inputs from left and right side of screen
+    - Store input as flag enum
+PlayerGun
     - Left input => fire left gun
     - Right input => fire right gun
-    - Recoil from guns causes movement 
     - Gun bullets use object pool
-PlayerStatus
+PlayerMovement
+    - Listen to recoil from guns 
     - Game over when colliding with an enemy
 
 Bullet
