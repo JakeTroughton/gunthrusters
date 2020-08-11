@@ -12,7 +12,7 @@ InputManager:
     negativeButton: 
     positiveButton: a
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: left
     gravity: 0
     dead: 0
     sensitivity: 0
@@ -28,7 +28,7 @@ InputManager:
     negativeButton: 
     positiveButton: d
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: right
     gravity: 0
     dead: 0
     sensitivity: 0

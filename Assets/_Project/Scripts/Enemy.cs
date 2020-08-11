@@ -52,4 +52,12 @@ public class Enemy : MonoBehaviour, IPoolable
         gameObject.SetActive(false);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
+        if (playerMovement)
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 }

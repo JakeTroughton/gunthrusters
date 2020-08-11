@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -10,6 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     public float GameTimeNormalised => gameTimer / gameDuration;
 
+    private bool isGameOver;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,13 +21,23 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if (gameTimer > 0f)
+        if (!isGameOver)
         {
-            gameTimer -= Time.deltaTime;
+            if (gameTimer > 0f)
+            {
+                gameTimer -= Time.deltaTime;
+            }
+            else
+            {
+                gameTimer = 0f;
+                GameOver();
+            }
         }
-        else
-        {
-            gameTimer = 0f;
-        }
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        SceneManager.LoadScene(0);
     }
 }

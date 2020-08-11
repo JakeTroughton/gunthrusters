@@ -15,7 +15,9 @@ public class VisualEffect : MonoBehaviour, IPoolable
     private void Awake()
     {
         if (!particleSystem)
+        {
             particleSystem = GetComponent<ParticleSystem>();
+        }
     }
 
     public void Activate(Vector2 position)
