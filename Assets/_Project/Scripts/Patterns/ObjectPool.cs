@@ -26,7 +26,7 @@ public class ObjectPool<T> where T : UnityEngine.Object, IPoolable
     private bool toDestroy;
     private int stragglerCount;
 
-    public bool TryActivate(Vector3 position, out T activatedObject)
+    public bool TryActivate(Vector2 position, out T activatedObject)
     {
         activatedObject = default;
         if (!isPopulated)

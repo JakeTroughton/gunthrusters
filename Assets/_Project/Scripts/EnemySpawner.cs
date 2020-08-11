@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private Enemy enemyPrefab;
+    private Enemy enemyPrefab = default;
     private ObjectPool<Enemy> enemyPool;
 
     [SerializeField]
-    private Transform chaseTarget;
+    private Transform chaseTarget = default;
 
     private Line spawnLine;
 

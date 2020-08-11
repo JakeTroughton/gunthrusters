@@ -46,6 +46,16 @@ public class Bullet : MonoBehaviour, IPoolable
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy)
+        {
+            enemy.CurrentHitpoints -= 1;
+            Deactivate();
+        }
+    }
+
     public void Deactivate()
     {
         gameObject.SetActive(false);

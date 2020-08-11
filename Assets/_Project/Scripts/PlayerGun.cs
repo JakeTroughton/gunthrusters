@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField]
-    private Bullet bulletPrefab;
+    private Bullet bulletPrefab = default;
     private ObjectPool<Bullet> bulletPool;
 
     [SerializeField]

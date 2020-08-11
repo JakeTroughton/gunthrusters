@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour, IPoolable
     public GameObject GameObject => gameObject;
 
     [SerializeField]
-    private int hitpoints = 1;
+    private int maxHitpoints = 1;
+    public int CurrentHitpoints { get; set; }
     [SerializeField]
     private float linearSpeed = 5f;
     [SerializeField]
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void Activate(Vector2 position)
     {
+        CurrentHitpoints = maxHitpoints;
         gameObject.SetActive(true);
         transform.position = position;
     }
@@ -30,7 +32,7 @@ public class Enemy : MonoBehaviour, IPoolable
         // Move
         transform.localPosition += transform.up * linearSpeed * Time.deltaTime;
 
-        if(hitpoints <= 0)
+        if(CurrentHitpoints <= 0)
         {
             Deactivate();
         }
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void Deactivate()
     {
+        VisualEffectManager.Instance.ActivateBurst(transform.position);
         gameObject.SetActive(false);
     }
 
