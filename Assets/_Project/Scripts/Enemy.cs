@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IPoolable
     public GameObject GameObject => gameObject;
 
     [SerializeField]
+    private int hitpoints = 1;
+    [SerializeField]
     private float linearSpeed = 5f;
     [SerializeField]
     private float angularSpeed = 10f;
@@ -25,9 +27,13 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         // Rotate
         RotateToTarget(angularSpeed);
-
         // Move
         transform.localPosition += transform.up * linearSpeed * Time.deltaTime;
+
+        if(hitpoints <= 0)
+        {
+            Deactivate();
+        }
     }
 
     public void RotateToTarget(float maxDegreesDelta)
