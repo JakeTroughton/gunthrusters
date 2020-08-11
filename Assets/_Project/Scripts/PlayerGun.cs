@@ -6,6 +6,10 @@ using UnityEngine;
 public class PlayerGun : MonoBehaviour
 {
     [SerializeField]
+    private Bullet bulletPrefab;
+    private ObjectPool<Bullet> bulletPool;
+
+    [SerializeField]
     private PlayerInput playerInput = default;
     [SerializeField]
     private InputType side = InputType.Left;
@@ -21,19 +25,34 @@ public class PlayerGun : MonoBehaviour
     // Floats are linear and angular recoil
     public event Action<float, float> OnFire;
 
+    private void Awake()
+    {
+        bulletPool = new ObjectPool<Bullet>();
+        bulletPool.Populate(bulletPrefab, 40, false);
+    }
+
     void Update()
     {
         if (fireCooldown <= 0f)
         {
             if((side & playerInput.CurrentInput) != 0)
             {
-                fireCooldown = fireRate;
-                OnFire?.Invoke(linearRecoil, angularRecoil);
+                Fire();
             }
         }
         else
         {
             fireCooldown -= Time.deltaTime;
         }
+    }
+
+    void Fire()
+    {
+        if (bulletPool.TryActivate(transform.position, out Bullet bullet))
+        {
+            bullet.SetDirection(transform.up);
+            OnFire?.Invoke(linearRecoil, angularRecoil);
+        }
+        fireCooldown = fireRate;
     }
 }

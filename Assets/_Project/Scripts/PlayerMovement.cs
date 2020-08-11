@@ -5,19 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private Camera mainCamera = default;
-    [SerializeField]
     private new Rigidbody2D rigidbody2D = default;
 
     private List<PlayerGun> playerGuns = new List<PlayerGun>();
 
     void Awake()
     {
-        if (!mainCamera)
-        {
-            mainCamera = Camera.main;
-        }
-
         if (!rigidbody2D)
         {
             rigidbody2D = GetComponent<Rigidbody2D>();
@@ -47,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     void WrapPosition()
     {
-        Vector3 vPos = mainCamera.WorldToViewportPoint(transform.position);
+        Vector3 vPos = MainCamera.Instance.WorldToViewport(transform.position);
         vPos.x = Mathf.Repeat(vPos.x, 1f);
         vPos.y = Mathf.Repeat(vPos.y, 1f);
-        transform.position = mainCamera.ViewportToWorldPoint(vPos);
+        transform.localPosition = MainCamera.Instance.ViewportToWorld(vPos);
     }
 }
