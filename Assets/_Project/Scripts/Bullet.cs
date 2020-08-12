@@ -7,12 +7,24 @@ public class Bullet : MonoBehaviour, IPoolable
 {
     public GameObject GameObject => gameObject;
 
-    public Vector2 Direction { get; set; }
+    public Vector2 Direction
+    {
+        get => direction;
+        set
+        {
+            direction = value;
+            Vector2 myPosition = transform.position;
+            Vector2 targetPosition = myPosition + direction;
+            float targetAngleDeg = Mathf.Atan2(targetPosition.y - myPosition.y, targetPosition.x - myPosition.x) * Mathf.Rad2Deg - 90f;
+            transform.localRotation = Quaternion.Euler(0f, 0f, targetAngleDeg);
+        }
+    }
     [SerializeField]
     private float speed = 10f;
 
     private readonly float offscreenCheckMax = 0.5f;
     private float offscreenCheckCooldown;
+    private Vector2 direction;
 
     public Action OnDeactivate { get; set; }
 
@@ -29,7 +41,7 @@ public class Bullet : MonoBehaviour, IPoolable
         pos += Direction * speed * Time.deltaTime;
         transform.localPosition = pos;
 
-        if(offscreenCheckCooldown > 0f)
+        if (offscreenCheckCooldown > 0f)
         {
             offscreenCheckCooldown -= Time.deltaTime;
         }
