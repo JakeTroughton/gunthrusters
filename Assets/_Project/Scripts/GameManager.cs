@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("UI")]
     [SerializeField]
-    private Text countdownLabel = default;
+    private Text statusLabel = default;
     private int prevCountdownValue;
 
     protected override void Awake()
@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
             if (prevCountdownValue > gameTimer)
             {
                 prevCountdownValue = (int)gameTimer;
-                countdownLabel.text = prevCountdownValue.ToString();
+                statusLabel.text = prevCountdownValue.ToString("00");
             }
         }
         else
@@ -71,16 +71,15 @@ public class GameManager : Singleton<GameManager>
         isGameOver = true;
         Time.timeScale = 0f;
 
-        countdownLabel.transform.localScale = Vector3.one * 1.5f;
         if (timeUp)
         {
-            countdownLabel.text = "YOU\nWIN";
-            countdownLabel.color = new Color(0f, 1f, 0f, 0.3f);
+            statusLabel.text = "YOU\nWIN";
+            statusLabel.color = new Color(0f, 1f, 0f, 0.3f);
         }
         else
         {
-            countdownLabel.text = "GAME\nOVER";
-            countdownLabel.color = new Color(1f, 0f, 0f, 0.3f);
+            statusLabel.text = "GAME\nOVER";
+            statusLabel.color = new Color(1f, 0f, 0f, 0.3f);
         }
     }
 }

@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour, IPoolable
 {
     public Transform Target { get; set; }
     public GameObject GameObject => gameObject;
+    [SerializeField]
+    private TrailRenderer trailRenderer;
 
     [SerializeField]
     private int maxHitpoints = 1;
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour, IPoolable
         CurrentHitpoints = maxHitpoints;
         gameObject.SetActive(true);
         transform.position = position;
+
+        trailRenderer.Clear();
     }
 
     private void Update()
@@ -50,11 +54,13 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         VisualEffectManager.Instance.ActivateBurst(transform.position);
         gameObject.SetActive(false);
+
+        trailRenderer.Clear();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement playerMovement = collider.GetComponent<PlayerMovement>();
         if (playerMovement)
         {
             GameManager.Instance.GameOver(false);
