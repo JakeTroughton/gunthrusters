@@ -29,6 +29,3 @@ Bullet
     - Orient to direction given by PlayerInput when fired
     - Travel in self forward direction
     - Despawn on collision with enemy; transmit damage
-
-TreasureManager
-Treasure 
