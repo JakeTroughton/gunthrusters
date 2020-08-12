@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         CurrentInput = InputType.None;
+#if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetButton("Left"))
         {
             CurrentInput |= InputType.Left;
@@ -27,6 +28,19 @@ public class PlayerInput : MonoBehaviour
         {
             CurrentInput |= InputType.Right;
         }
+#elif UNITY_ANDROID
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            float x = Input.GetTouch(i).position.x;
+            if (x < Screen.width * 0.5f)
+            {
+                CurrentInput |= InputType.Left;
+            }
+            if (x > Screen.width * 0.5f)
+            {
+                CurrentInput |= InputType.Right;
+            }
+        }
+#endif
     }
-
 }

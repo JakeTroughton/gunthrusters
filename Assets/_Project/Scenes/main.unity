@@ -429,7 +429,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 7191495656667958828, guid: 4983383418269ce4ca8ba3e8ef16772c,
     type: 3}
   chaseTarget: {fileID: 1894088922}
-  spawnRateMin: 0.15
+  spawnRateMin: 0.125
   spawnRateMax: 1.5
 --- !u!4 &913060352
 Transform:
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd7e2dfa5c30df4d8d7a93ea08a289e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDuration: 30
-  gameOverDuration: 3
+  gameDuration: 35
+  gameOverDuration: 2
   statusLabel: {fileID: 1144557219}
 --- !u!4 &1858205263
 Transform:
@@ -736,6 +736,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558663607730073, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: linearRecoil
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558663607730073, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: angularRecoil
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558663607730073, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558664320645541, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: linearRecoil
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558664320645541, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: angularRecoil
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 865558664320645541, guid: 5b61479ead24b7c45b060149d5bc8887,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b61479ead24b7c45b060149d5bc8887, type: 3}

@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private new Rigidbody2D rigidbody2D = default;
-
     private List<PlayerGun> playerGuns = new List<PlayerGun>();
 
     void Awake()
