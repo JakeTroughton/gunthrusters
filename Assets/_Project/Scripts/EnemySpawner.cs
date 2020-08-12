@@ -29,11 +29,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        float min = -0.1f;
+        float max = 1.1f;
         spawnLine = new Line(
-            MainCamera.Instance.ViewportToWorld(new Vector2(0, 0)),
-            MainCamera.Instance.ViewportToWorld(new Vector2(0, 1)),
-            MainCamera.Instance.ViewportToWorld(new Vector2(1, 1)),
-            MainCamera.Instance.ViewportToWorld(new Vector2(1, 0))
+            MainCamera.Instance.ViewportToWorld(new Vector2(min, min)),
+            MainCamera.Instance.ViewportToWorld(new Vector2(min, max)),
+            MainCamera.Instance.ViewportToWorld(new Vector2(max, max)),
+            MainCamera.Instance.ViewportToWorld(new Vector2(max, min))
             );
     }
 
