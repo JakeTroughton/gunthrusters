@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IPoolable
         PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
         if (playerMovement)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver(false);
         }
     }
 }
