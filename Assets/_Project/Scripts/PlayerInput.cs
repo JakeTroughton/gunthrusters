@@ -28,7 +28,7 @@ public class PlayerInput : MonoBehaviour
         {
             CurrentInput |= InputType.Right;
         }
-#elif UNITY_ANDROID
+#elif UNITY_ANDROID || UNITY_IOS
         for (int i = 0; i < Input.touchCount; i++)
         {
             float x = Input.GetTouch(i).position.x;
