@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
                 GameOver(true);
             }
 
-            if (prevCountdownValue > gameTimer)
+            if (statusLabel && prevCountdownValue > gameTimer)
             {
                 prevCountdownValue = (int)gameTimer;
                 statusLabel.text = prevCountdownValue.ToString("00");
@@ -71,15 +71,18 @@ public class GameManager : Singleton<GameManager>
         isGameOver = true;
         Time.timeScale = 0f;
 
-        if (timeUp)
+        if (statusLabel)
         {
-            statusLabel.text = "YOU\nWIN";
-            statusLabel.color = new Color(0f, 1f, 0f, 0.3f);
-        }
-        else
-        {
-            statusLabel.text = "GAME\nOVER";
-            statusLabel.color = new Color(1f, 0f, 0f, 0.3f);
+            if (timeUp)
+            {
+                statusLabel.text = "YOU\nWIN";
+                statusLabel.color = new Color(0f, 1f, 0f, 0.3f);
+            }
+            else
+            {
+                statusLabel.text = "GAME\nOVER";
+                statusLabel.color = new Color(1f, 0f, 0f, 0.3f);
+            }
         }
     }
 }
